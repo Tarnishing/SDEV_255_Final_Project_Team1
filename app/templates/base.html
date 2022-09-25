@@ -1,0 +1,46 @@
+<!-- This file serves a base template for the game's website. Content that changes will come from the block content in the index.html file. -->
+<!-- Streaming information is possible through the use of Socket IO. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/styles.css')}}" />
+
+    <!--JavaScript-->
+    <!--Socketio-->
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"
+        integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
+        crossorigin="anonymous"></script>
+
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!--main.js-->
+    <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
+</head>
+
+<body>
+    <div class="topbtn">
+        <p>WELCOME TO ZORK 2</p>
+    </div>
+
+    <!-- Block content is in the index.html file -->
+    {% block content %}
+    {% endblock %}
+
+    <div>
+        <form method="POST">
+            <button class="btn-blue">PLAY</button>
+        </form>
+        <button class="btn-green">SAVE</button>
+        <button class="btn-red">EXIT</button>
+    </div>
+</body>
+
+</html>
