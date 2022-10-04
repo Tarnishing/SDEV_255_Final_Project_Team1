@@ -25,6 +25,7 @@ def connect():
 
 @app.route("/", methods = ['GET', 'POST'])
 def index():
+    # Render the game.html page if the PLAY button is clicked
     if request.method == 'POST':
         return generate_game()
     return render_template('index.html')
