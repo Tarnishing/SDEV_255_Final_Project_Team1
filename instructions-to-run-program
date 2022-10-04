@@ -1,4 +1,0 @@
-As of 9/25/22
-
-1. Make sure to install any dependencies (e.g. pip install Flask-Session, pip install Flask-SocketIO)
-2. Run the program by typing the following: python wsgi.py      (within a Bash terminal)

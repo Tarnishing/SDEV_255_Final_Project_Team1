@@ -1,0 +1,10 @@
+As of 10/4/22
+
+1. Make sure to install any dependencies. In Powershell terminal run the command: pip install -r requirements.txt
+
+   Notes: Be sure to be in the same directory as requirements.txt or it will say that it does not exist.
+          You can check which directory you're in by typing in the terminal: ls
+          You can change the directory by typing: cd (name of directory)
+          If you need to go up a directory, type: cd . (with the space and period included.)
+
+2. Run the program by typing the following: python wsgi.py (within a Bash terminal)
