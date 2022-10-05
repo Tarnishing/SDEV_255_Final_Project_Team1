@@ -3,6 +3,8 @@ from flask_socketio import SocketIO, emit
 from flask_session import Session
 from uuid import uuid4
 
+import pickle
+
 app = Flask(__name__)
 #  This generates a randomized string for the secret key.
 app.config['SECRET_KEY'] = uuid4().hex
