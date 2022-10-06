@@ -1,17 +1,40 @@
-body {
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+.contain{
+ 
+  background: linear-gradient(-45deg,#ffffff,#000000,#101011,#fbfbfb);
+  background-size: 400% 400%;
   margin: 0;
-  background: radial-gradient(#111, #000);
   min-height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   flex-direction: column;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.5;
+  animation: color 34s ease-in-out infinite;
+  
+
 }
 
+@keyframes color {0%{
+  background-position: 0 50%;
+}
+50%{
+  background-position: 100% 50%;
+}
+100%{
+  background-position: 0 50%;
+}
+}
+ 
 button {
   color: #fff;
-  font-family: Verdana, sans-serif;
+  font-family: Orbitron, sans-serif;
   border: none;
   background: var(--neon-bg);
   margin: 1.5em;
@@ -22,6 +45,9 @@ button {
   transition: 0.3s;
   position: relative;
   cursor: pointer;
+  overflow: hidden;
+  outline: none;
+
 }
 
 .btn-blue {
@@ -112,32 +138,13 @@ button::after {
   }
 }
 
-.topbtn {
-  --neon-bg: repeating-linear-gradient(
-      0deg,
-      #dfee12 0%,
-      #ddec0a 2%,
-      transparent 2%,
-      transparent 14%
-    ),
-    rgba(255, 230, 0, 0.7);
-  box-shadow: 0 0 1em #eff163;
-  color: #fff;
-  font-family: Verdana, sans-serif;
-  border: none;
-  background: var(--neon-bg);
-  margin: 1.5em;
-  padding: 0.6em 3em;
-  font-size: 1.5em;
-  font-weight: bold;
-  letter-spacing: 1px;
-  transition: 0.3s;
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  flex-wrap: wrap;
+.topbtn{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+font-family: Arial, Helvetica, sans-serif;
+
 }
 
 .topbtn::before,
@@ -161,5 +168,6 @@ button::after {
 .game {
   height: 555px;
   width: 1280px;
-  background-color: #2176ff;
+  color:#fff;
+  background: black
 }

@@ -43,6 +43,8 @@ def index():
 
 @app.route("/load", methods=['GET', 'POST'])
 def load_game():
-    if request.method == 'POST':
-        return generate_saved_game()
-    return render_template('index.html')
+    return generate_saved_game(), render_template('index.html')
+
+@app.route("/save", methods=['POST'])
+def save_game():
+    Save.save_game_data()
