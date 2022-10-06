@@ -74,6 +74,18 @@ button {
   box-shadow: 0 0 1em #ff2121;
 }
 
+.btn-orange {
+  --neon-bg: repeating-linear-gradient(
+      0deg,
+      #e0ae5d 0%,
+      #e0ae5d 2%,
+      transparent 2%,
+      transparent 14%
+    ),
+    rgba(255, 128, 0, 0.7);
+  box-shadow: 0 0 1em #c47e0c;
+}
+
 .btn-green {
   --neon-bg: repeating-linear-gradient(
       0deg,
@@ -96,6 +108,10 @@ button:hover {
 
 .btn-red:hover {
   color: #ff2121;
+}
+
+.btn-orange:hover {
+  color: #d5841a;
 }
 
 .btn-green:hover {
