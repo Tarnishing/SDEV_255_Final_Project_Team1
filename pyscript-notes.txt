@@ -1,0 +1,90 @@
+---------------------------------
+BASIC TEMPLATE (.py)
+---------------------------------
+# creates file to write to
+f = open('helloworld.html','w')
+
+message = """<html>
+<head>
+    <link rel="stylesheet" href="link/to/style.css"/>
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    # Declare local Python module(s)
+    <py-env>
+        - paths:
+            - ./script.py
+    </py-env>
+</head>
+<body>
+    <py-script>
+        print('Hello, world!')
+    <py-script>
+</body>
+</html>"""
+
+f.write(message)
+f.close()
+
+
+---------------------------------
+NOTES
+---------------------------------
++ Be sure to run write-to-html.py if any changes are made in it, that way game.html
+  reflects those updates.
+
+
++ If you import a local Python script from file by using the src parameter of the
+  py-script tag, follow the syntax below:
+        <py-script src=".path/to/script.py"></py-script>
+
+
++ If utilizing local files, you will receive errors. The solution to this is to use
+  a webserver to serve those files. In the command prompt type the following:
+        python -m http.server
+            
+            OR
+
+        python -m http.server (specify port number)
+  Navigate to whichever port it is using and add /game.html (or whatever file name you
+  assigned in the write-to-html.py file)
+
+
++ From "PyScript - Getting Application Data"
+  https://www.jhanley.com/blog/pyscript-getting-application-data/
+
+  "PyScript applications cannot request the user to type characters in response to
+  Python input type of functions. PyScript applications must use HTML DOM elements
+  to create a GUI that data is entered into. Then the application can read the data
+  from those elements." See this link:
+  https://developer.mozilla.org/en-US/docs/Web/Guide/User_input_methods#tutorials
+
+
++ "Pyscript: JavaScript Event Callbacks"
+  https://www.jhanley.com/blog/pyscript-javascript-callbacks/
+  (good resource on create_proxy())
+
+
++ "Intro to PyScript: Run Python in the browser"
+  https://blog.logrocket.com/pyscript-run-python-browser/#attaching-events-elements
+  (overall really good tutorial, plus maybe a way to save and load data?)
+
++ create_proxy() -- IMPORTANT TO KNOW!!!
+  CAN ONLY BE USED ONCE! Not in the sense that it can be used once and then it no
+  longer functions if you try to use it again, but that it cannot be assigned to
+  the same JavaScript element and used to call a different function. Once an element
+  is used with create_proxy(), it will be used to call the same function, even if
+  you code it to call a different one.
+    e.g.: name_proxy = create_proxy(player_name)
+          confirm_button = document.getElementById("confirm-btn")
+          confirm_button.addEventListener("click", name_proxy)
+
+          The confirm button will always callback the player_name() function.
+
+          So, even if you code this later:
+
+          x_proxy = create_proxy(some_function)
+          confirm_button = document.getElementById("confirm-btn")
+          confirm_button.addEventListener("click", x_proxy)
+
+          It will still callback to the player_name() function and not the
+          some_function() function!!!!
+  https://readthedocs.org/projects/pyodide/downloads/pdf/latest/ (page 39)
