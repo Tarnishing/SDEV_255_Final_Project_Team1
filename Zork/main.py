@@ -7,10 +7,14 @@ from pyodide import create_proxy
 
 progress = 0
 
+en = obj.Enemy()
+men = obj.ModerateEnemy()
+den = obj.DifficultEnemy()
+
 def travel_1(loc, pname):
-    en = obj.Enemy()
-    men = obj.ModerateEnemy()
-    den = obj.DifficultEnemy()
+    global en
+    global men
+    global den
 
     if loc == 'nw':
         building = 'a1'
@@ -20,7 +24,7 @@ def travel_1(loc, pname):
         Element("rank").write(f"&emsp;&emsp;{en.rank}")
         Element("message").write("")
         Element("prompt").write("&gt;&nbsp;&gt;&nbsp; Will you attack or flee?")
-        # answer = obj.validate_attack_input()
+        # answer = validate_encounter_input()
         # attack_or_flee(answer, pname, en, loc)
         # arrive_to_building(pname, building)
     elif loc == 'n':
@@ -31,7 +35,7 @@ def travel_1(loc, pname):
         Element("rank").write(f"&emsp;&emsp;{en.rank}")
         Element("message").write("")
         Element("prompt").write("&gt;&nbsp;&gt;&nbsp; Will you attack or flee?")
-        # answer = validate_attack_input()
+        # answer = validate_encounter_input()
         # attack_or_flee(answer, pname, en, loc)
         # arrive_to_building(pname, building)
     elif loc == 'ne':
@@ -41,7 +45,7 @@ def travel_1(loc, pname):
         Element("rank").write(f"&emsp;&emsp;{en.rank}")
         Element("message").write("")
         Element("prompt").write("&gt;&nbsp;&gt;&nbsp; Will you attack or flee?")
-        # answer = validate_attack_input()
+        # answer = validate_encounter_input()
         # attack_or_flee(answer, pname, en, loc)
         # arrive_to_building(pname, building)
     else:
@@ -57,31 +61,37 @@ def arrive_to_building(pname, building):
 
     pass
 
-def validate_attack_input():
-    ans = input(
-        'Do you want to attack or flee?("a" to attack,"f" to flee) ')
+# def validate_encounter_input(text):
+#     global encounter_ans
 
-    if ans.lower().strip() == 'a':
-        return ans
-    elif ans.lower().strip() == 'f':
-        return ans
-    else:
-        print("UNKNOWN INPUT. TRY AGAIN. ")
-        ans = input(
-            'Do you want to attack or flee?("a" to attack,"f" to flee) ')
-        return ans
+#     encounter_ans = text.casefold()
 
-def attack_or_flee(ans, pname, en, loc):
-    player = obj.Player(pname)
-    en = obj.Enemy()
-    if ans == 'a':
-        print("You killed the", en.name,
-              "!  You did take damage to your radiation suit.")
-        enemy_damage(pname, en)
-    elif ans == 'f':
-        print(player.name, ', You just returned to your Bio Pod. ')
-        direc = input("What direction do you want to travel?")
-        travel_1(direc, pname)
+#     if encounter_ans == 'attack' or 'a':
+#         encounter_ans = encounter_ans.strip('ttack')
+#         Element("test").write(f"{encounter_ans}")
+#     elif encounter_ans == 'flee' or 'f':
+#         encounter_ans = encounter_ans.strip('lee')
+#     else:
+#         Element("notify").write("&gt;&nbsp; Command is invalid. Try again. &nbsp;&lt;")
+
+def attack_or_flee(text):
+
+    if text == 'a':
+        Element("direction").write("")
+        Element("important").write("")
+        Element("enemy").write("")
+        ELement("rank").write("")
+        Element("message").write(f"You killed the {en.name}!<br>There is now damage to your radiation suit.")
+        enemy_damage(name, en)
+    elif text == 'f':
+        Element("direction").write("")
+        Element("important").write("")
+        Element("enemy").write("")
+        ELement("rank").write("")
+        Element("message").write(f"You decided that fighting {en.name} wasn't worth the risk, and so you return to your bio-pod.")
+        Element("prompt").write("Which direction do you want to go now?")
+        # direc = input("What direction do you want to travel?")
+        # travel_1(direc, name)
 
 # subtracts from player health a set ineger of enemy class
 def enemy_damage(pname, en):
@@ -134,11 +144,20 @@ def game_progress(e):
     #         Element("prompt").write("<h3 align='center'>&gt;&nbsp; Press 'Enter' to proceed &nbsp;&lt;</h3>")
 
     elif progress == 3:
-        Element("message").write("You just woke up in your radiation proof bio-pod headquarters.<br><br>You had traveled from a small community from the south and there is nothing back there for you unless you retrieve the special Chelsea-Wax plant.")
+        Element("message").write("You just woke up in your radiation proof bio-pod headquarters.<br><br>You had traveled from a small community from the south and there is nothing back there for you except to retrieve the special Chelsea-Wax plant.")
         Element("prompt").write("&gt;&nbsp;&gt;&nbsp; You have the option to travel Northwest (nw), North (n), or Northeast (ne).")
 
     elif progress == 4:
         travel_1(text, obj.Player)
+
+    # progress == 5 is skipped because it is travel_1()
+
+    elif progress == 6:
+        attack_or_flee(text)
+
+    elif progress == 7:
+        Element("message").write("Progress at 7")
+
 
     else:
         pass

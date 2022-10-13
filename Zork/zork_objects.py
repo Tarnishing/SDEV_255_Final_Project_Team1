@@ -46,7 +46,7 @@ class ModerateEnemy(Enemy):
 class DifficultEnemy(Enemy):
     def __init__(self):
         super().__init__()
-        self.name = 'A Hoard of Mutated Carniverous Ducks'
+        self.name = 'Horde of Mutated Carniverous Ducks'
         self.rank = '[ Rank A ]'
         self.damage = 110
 
